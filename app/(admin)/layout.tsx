@@ -4,8 +4,8 @@ import '@/app/globals.css';
 import { AppSidebar } from '@/components/app-sidebar';
 import Header from '@/components/header';
 
-let title = 'Admin Page';
-let description = '';
+const title = 'Admin Page';
+const description = '';
 
 export const metadata = {
   title,

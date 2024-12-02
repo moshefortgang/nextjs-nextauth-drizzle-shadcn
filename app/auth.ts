@@ -29,9 +29,9 @@ export const {
       },
 
 			async authorize({ email, password }: any) {
-        let user = await getUser(email);
+        const user = await getUser(email);
         if (user.length === 0 || !user[0].password) throw new InvalidLoginError();
-        let passwordsMatch = await compare(password, user[0].password!);
+        const passwordsMatch = await compare(password, user[0].password!);
         if (passwordsMatch) return user[0] as User;
 				throw new InvalidLoginError();
       },

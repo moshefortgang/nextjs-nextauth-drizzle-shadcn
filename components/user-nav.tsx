@@ -5,7 +5,6 @@ import {  signOut, useSession } from "next-auth/react"
 // import { SignOut } from "./auth-components"
 import {
   Avatar,
-  AvatarFallback,
   AvatarImage,
 } from "./ui/avatar"
 import { Button } from "./ui/button"

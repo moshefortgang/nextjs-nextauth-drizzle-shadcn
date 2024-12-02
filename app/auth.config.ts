@@ -14,9 +14,9 @@ export const authConfig = {
 	session: { strategy: "jwt" },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      let isLoggedIn = !!auth?.user;
-      let isLoginPage = nextUrl.pathname.startsWith('/login');
-      let isRegisterPage = nextUrl.pathname.startsWith('/register');
+      const isLoggedIn = !!auth?.user;
+      const isLoginPage = nextUrl.pathname.startsWith('/login');
+      const isRegisterPage = nextUrl.pathname.startsWith('/register');
 
 			if (!isLoggedIn && !(isLoginPage || isRegisterPage)) {
 				return false;

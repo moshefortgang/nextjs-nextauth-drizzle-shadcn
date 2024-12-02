@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, Form } from './ui/form';
+import { FormField, FormItem, FormLabel, FormControl, FormMessage, Form } from './ui/form';
 import { register } from '@/actions/auth';
 
 const formSchema = z.object({

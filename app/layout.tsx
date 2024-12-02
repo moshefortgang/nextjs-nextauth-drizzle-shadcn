@@ -4,8 +4,8 @@ import { GeistSans } from 'geist/font/sans';
 
 import { Toaster } from '@/components/ui/toaster';
 
-let title = 'Next.js + Postgres Auth Starter';
-let description =
+const title = 'Next.js + Postgres Auth Starter';
+const description =
   'This is a Next.js starter kit that uses NextAuth.js for simple email + password login and a Postgres database to persist the data.';
 
 export const metadata = {
