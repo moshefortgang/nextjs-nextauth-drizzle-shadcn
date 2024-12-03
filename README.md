@@ -1,4 +1,4 @@
-# Next.js 15 + React 19 + NextAuth 5 + Drizzle + Shadcn/UI
+# Next.js 15 + NextAuth 5 + Drizzle + Shadcn/UI
 
 A modern stack for building full-stack web applications with:  
 - **Next.js 15** for performance and scalability  
