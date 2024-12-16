@@ -1,12 +1,13 @@
-# Next.js 15 + NextAuth 5 + Drizzle + Shadcn/UI
+# Next.js 15 + NextAuth 5 + Drizzle + Shadcn/UI + Jest
 
 A modern stack for building full-stack web applications with:  
-- **[Next.js](https://nextjs.org/)** for performance and scalability  
-- **[React](https://react.dev/)** for a powerful and flexible UI framework  
-- **[Auth.js](https://auth.js.org/)** for authentication  
-- **[PostgreSQL](https://www.postgresql.org/)** for reliable and scalable database solutions  
-- **[Drizzle ORM](https://orm.drizzle.team/)** for type-safe database management  
-- **[Shadcn/UI](https://ui.shadcn.com/)** for beautiful, customizable components  
+- **[Next.js](https://nextjs.org/)** for performance and scalability.
+- **[React](https://react.dev/)** for a powerful and flexible UI framework.
+- **[Auth.js](https://auth.js.org/)** for authentication.
+- **[PostgreSQL](https://www.postgresql.org/)** for reliable and scalable database solutions.
+- **[Drizzle ORM](https://orm.drizzle.team/)** for type-safe database management.
+- **[Shadcn/UI](https://ui.shadcn.com/)** for beautiful, customizable components.
+- **[Jest](https://jestjs.io/)** A testing framework for ensuring your app works as expected.
 
 ## Getting Started
 
@@ -38,3 +39,10 @@ A modern stack for building full-stack web applications with:
 5. Run the app:  
    ```bash
    pnpm dev
+
+## Running Tests:
+This project uses Jest for unit testing.
+
+To run tests, use the following command:
+```bash
+pnpm test
