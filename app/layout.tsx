@@ -3,6 +3,7 @@ import './globals.css';
 import { GeistSans } from 'geist/font/sans';
 
 import { Toaster } from '@/components/ui/toaster';
+import { SessionProvider } from 'next-auth/react';
 
 const title = 'Next.js + Postgres Auth Starter';
 const description =
@@ -19,15 +20,11 @@ export const metadata = {
   metadataBase: new URL('https://nextjs-postgres-auth.vercel.app'),
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={GeistSans.variable}>
-        {children}
+        <SessionProvider>{children}</SessionProvider>
         <Toaster />
       </body>
     </html>

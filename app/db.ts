@@ -12,6 +12,7 @@ export const db = drizzle(sql, { schema });
 export async function getUser(email: string) {
 	return await db.select().from(users).where(eq(users.email, email));
 }
+
 export async function createUser(email: string, password: string) {
   const salt = genSaltSync(10);
   const hash = hashSync(password, salt);

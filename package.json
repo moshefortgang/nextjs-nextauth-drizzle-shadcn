@@ -36,6 +36,7 @@
     "postgres": "^3.4.5",
     "react": "19.0.0-rc-4d577fd2-20241104",
     "react-dom": "19.0.0-rc-4d577fd2-20241104",
+    "react-dropzone": "^14.3.5",
     "react-hook-form": "^7.53.2",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",

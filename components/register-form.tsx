@@ -11,18 +11,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { FormField, FormItem, FormLabel, FormControl, FormMessage, Form } from './ui/form';
 import { register } from '@/actions/auth';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  password: z.string().min(6),
-  confirmPassword: z.string().min(6),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+  confirmPassword: z.string().min(6, 'Password must be at least 6 characters'),
 }).refine((data) => data.password === data.confirmPassword, {
-	message: "Passwords don't match",
-	path: ['confirmPassword'],
+  message: "Passwords must match",
+  path: ['confirmPassword'],
 });
 
 export default function RegisterForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,14 +37,18 @@ export default function RegisterForm() {
 
    async function onSubmit(values: z.infer<typeof formSchema>) {
     const res = await register(values);
-		form.setError('email', { type: 'manual', message: res.message });
+    if (res.message !== 'success') {
+      form.setError('email', { type: 'manual', message: res.message });
+    } else {
+      router.push('/login');
+    }
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-2xl">Register</CardTitle>
-        <CardDescription>Enter your information to create an account</CardDescription>
+        <CardTitle className="text-2xl">Create Account</CardTitle>
+        <CardDescription>Create your account to get started</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -54,7 +60,7 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input placeholder="Enter your name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -67,7 +73,7 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input placeholder="Enter your email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -80,7 +86,7 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input type="password" placeholder="Enter your password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -93,7 +99,7 @@ export default function RegisterForm() {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="" {...field} />
+                    <Input type="password" placeholder="Confirm your password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -107,11 +113,10 @@ export default function RegisterForm() {
       </CardContent>
       <CardFooter>
         <p className="text-center text-sm text-gray-600">
-          {'Already have an account? '}
+          Already have an account?{' '}
           <Link href="/login" className="font-semibold text-gray-800">
             Sign in
           </Link>
-          {' instead.'}
         </p>
       </CardFooter>
     </Card>

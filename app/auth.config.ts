@@ -25,6 +25,7 @@ export const authConfig = {
     },
 		async session({ session, token }) {
 			session.user.image = token.picture
+			session.user.id = token.sub ?? ''
       return session
     },
   },
