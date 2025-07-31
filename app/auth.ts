@@ -4,7 +4,7 @@ import Credentials from 'next-auth/providers/credentials';
 import { compare } from 'bcrypt-ts';
 import Google from "next-auth/providers/google"
 
-import { getUser } from 'app/db';
+import { getUser } from '@/actions/user';
 import { authConfig } from 'app/auth.config';
 
 class InvalidLoginError extends CredentialsSignin {

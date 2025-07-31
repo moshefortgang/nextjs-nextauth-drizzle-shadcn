@@ -1,6 +1,6 @@
 'use server';
 
-import { getUser, createUser } from '@/app/db';
+import { getUser, createUser } from '@/actions/user';
 import { redirect } from 'next/navigation';
 
 export async function register(data: any) {
