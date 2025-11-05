@@ -3,7 +3,7 @@
 A modern stack for building full-stack web applications with:  
 - **[Next.js](https://nextjs.org/)** for performance and scalability.
 - **[React](https://react.dev/)** for a powerful and flexible UI framework.
-- **[Auth.js](https://auth.js.org/)** for authentication.
+- **[Better Auth](https://www.better-auth.com/)** for authentication.
 - **[PostgreSQL](https://www.postgresql.org/)** for reliable and scalable database solutions.
 - **[Drizzle ORM](https://orm.drizzle.team/)** for type-safe database management.
 - **[Shadcn/UI](https://ui.shadcn.com/)** for beautiful, customizable components.
@@ -13,8 +13,8 @@ A modern stack for building full-stack web applications with:
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/moshefortgang/next15-nextauth5-drizzle-shadcn.git
-   cd next15-nextauth5-drizzle-shadcn
+   git clone https://github.com/moshefortgang/next15-better-auth-drizzle-shadcn.git
+   cd next15-better-auth-drizzle-shadcn
 
 2. Copy the `.env.example` file and rename it to `.env`:  
    ```bash
