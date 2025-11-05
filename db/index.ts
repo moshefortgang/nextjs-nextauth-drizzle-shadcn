@@ -1,9 +1,6 @@
+import postgres from "postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
+import * as schema from "./schema";
 
-import postgres from "postgres"
-import { drizzle } from "drizzle-orm/postgres-js"
-
-export const db = process.env.NODE_ENV === 'production'
-	? drizzle(
-			postgres(`${process.env.POSTGRES_URL!}`, { max: 1 })
-		)
-	: drizzle(process.env.POSTGRES_URL as string);
+const client = postgres(process.env.POSTGRES_URL!, { max: 1 });
+export const db = drizzle(client, { schema });

@@ -15,6 +15,13 @@
       "when": 1730981462829,
       "tag": "0001_bright_spirit",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762349019427,
+      "tag": "0002_tearful_fixer",
+      "breakpoints": true
     }
   ]
 }

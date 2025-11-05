@@ -16,40 +16,52 @@ export const users = pgTable("user", {
   name: text("name"),
   password: text("password"),
   email: text("email").unique(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
+	emailVerified: boolean("emailVerified").default(false).notNull(),
   image: text("image"),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
 })
  
 export const accounts = pgTable(
   "account",
   {
+		id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
     userId: text("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    type: text("type").$type<AdapterAccountType>().notNull(),
-    provider: text("provider").notNull(),
-    providerAccountId: text("providerAccountId").notNull(),
-    refresh_token: text("refresh_token"),
-    access_token: text("access_token"),
-    expires_at: integer("expires_at"),
-    token_type: text("token_type"),
+    providerId: text("provider").notNull(),
+    accountId: text("providerAccountId").notNull(),
+    refreshToken: text("refresh_token"),
+    accessToken: text("access_token"),
+    accessTokenExpiresAt: timestamp("expires_at"),
     scope: text("scope"),
-    id_token: text("id_token"),
-    session_state: text("session_state"),
-  },
-  (account) => ({
-    compoundKey: primaryKey({
-      columns: [account.provider, account.providerAccountId],
-    }),
-  })
+    idToken: text("id_token"),
+		createdAt: timestamp("created_at").defaultNow().notNull(),
+		updatedAt: timestamp("updated_at")
+			.$onUpdate(() => /* @__PURE__ */ new Date())
+			.notNull(),
+  }
 )
  
 export const sessions = pgTable("session", {
-  sessionToken: text("sessionToken").primaryKey(),
+	id: text("id").primaryKey(),
+  token: text("sessionToken").notNull().unique(),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  expires: timestamp("expires", { mode: "date" }).notNull(),
+  expiresAt: timestamp("expires", { mode: "date" }).notNull(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+	ipAddress: text("ip_address"),
+	userAgent: text("user_agent"),
+
 })
  
 export const verificationTokens = pgTable(
@@ -65,6 +77,19 @@ export const verificationTokens = pgTable(
     }),
   })
 )
+
+export const verifications = pgTable("verification", {
+  id: text("id").primaryKey(),
+  identifier: text("identifier").notNull(),
+  value: text("value").notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
  
 export const authenticators = pgTable(
   "authenticator",

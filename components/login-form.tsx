@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { signIn } from 'next-auth/react';
+import { signIn } from '@/lib/auth-client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -27,8 +27,7 @@ export default function LoginForm() {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const res = await signIn('credentials', {
-      redirect: false,
+    const res = await signIn.email({
       email: data.email,
       password: data.password,
     });
@@ -95,8 +94,8 @@ export default function LoginForm() {
                 variant="outline"
                 className="w-full mt-3"
                 onClick={async () => {
-                  await signIn('google', {
-                    redirectTo: '/',
+                  await signIn.social({
+                    provider: "google",
                   });
                 }}
               >

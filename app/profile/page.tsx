@@ -1,11 +1,15 @@
-import { auth } from '@/app/auth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import ProfileForm from '@/components/profile-form';
+import { auth } from "@/auth";
+import { headers } from "next/headers"
 
 export default async function ProfilePage() {
-  const session = await auth();
   
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	})
+	
   if (!session?.user) {
     return null;
   }

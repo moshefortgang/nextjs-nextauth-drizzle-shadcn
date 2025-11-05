@@ -1,8 +1,7 @@
 "use client"
 
-import {  signOut, useSession } from "next-auth/react"
-// import { signOut } from "@/app/auth"
-// import { SignOut } from "./auth-components"
+import { signOut, useSession } from "@/lib/auth-client";
+
 import {
   Avatar,
   AvatarImage,
@@ -19,11 +18,12 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
 import Link from "next/link"
+import { useRouter } from "next/navigation";
 
 
 export function UserNav() {
-	const { data: session } = useSession();
-console.log(session);
+  const router = useRouter();
+  const { data: session } = useSession();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -62,9 +62,8 @@ console.log(session);
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()}>
+        <DropdownMenuItem onClick={() => signOut().then(() => router.push("/login"))}>
           Log out
-					{/* <Button onClick={() => signOut()} /> */}
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
