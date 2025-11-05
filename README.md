@@ -1,4 +1,4 @@
-# Next.js 15 + NextAuth 5 + Drizzle + Shadcn/UI + Jest
+# Next.js 15 + Better Auth + Drizzle + Shadcn/UI + Jest
 
 A modern stack for building full-stack web applications with:  
 - **[Next.js](https://nextjs.org/)** for performance and scalability.
@@ -13,12 +13,23 @@ A modern stack for building full-stack web applications with:
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/moshefortgang/next15-better-auth-drizzle-shadcn.git
-   cd next15-better-auth-drizzle-shadcn
+   git clone https://github.com/moshefortgang/nextjs-better-auth-drizzle-shadcn/
+   cd nextjs-better-auth-drizzle-shadcn
+   ```
 
-2. Copy the `.env.example` file and rename it to `.env`:  
+2. Install dependencies using pnpm:
+   ```bash
+   # Install pnpm if you haven't already
+   npm install -g pnpm
+
+   # Install project dependencies
+   pnpm install
+   ```
+
+3. Copy the `.env.example` file and rename it to `.env`:  
    ```bash
    cp .env.example .env
+   ```
 
 3. Configure the `.env` file with your values:  
    Open the `.env` file and fill in the following variables:
@@ -27,14 +38,16 @@ A modern stack for building full-stack web applications with:
    POSTGRES_URL=your_postgresql_database_url
 
    # Generate one here: https://generate-secret.vercel.app/32 (only required for localhost)
-   AUTH_SECRET=your_secret_key
+   BETTER_AUTH_SECRET=your_secret_key
+
+   BASE_URL=base_url
 
    AUTH_GOOGLE_ID=your_google_client_id
    AUTH_GOOGLE_SECRET=your_google_client_secret
    
 4. Apply migrations (if applicable):  
    ```bash
-   pnpm drizzle:push
+   npx drizzle-kit push
 
 5. Run the app:  
    ```bash
